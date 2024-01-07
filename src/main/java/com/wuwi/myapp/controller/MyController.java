@@ -8,6 +8,7 @@ public class MyController {
 
     @GetMapping("/hello")
     public String hello() {
+        System.out.println("test web hook");
         return "hello world";
     }
 }
