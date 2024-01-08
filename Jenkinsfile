@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "mvn clean package spring-boot:repackage"
+                echo "test github webhood trigger jenkins"
                 sh "printenv"
             }
         }
