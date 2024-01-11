@@ -8,7 +8,7 @@ public class MyController {
 
     @GetMapping("/hello")
     public String hello() {
-        System.out.println("test web hook2");
+        System.out.println("test web hook3");
         return "hello world";
     }
 }
