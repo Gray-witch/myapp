@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "test github webhood trigger jenkins"
-                sh "printenv"
+                sh 'mvn clean package -Dmaven.test.skip=true'
             }
         }
     }
