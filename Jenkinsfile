@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo 'mvn build'
                 sh 'mvn clean package -Dmaven.test.skip=true'
             }
         }
