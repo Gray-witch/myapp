@@ -58,6 +58,24 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.44.0</version>
+				<configuration>
+					<images>
+						<image>
+							<name>wuwi/${project.name}:${project.version}</name>
+							<build>
+								<dockerFileDir>${project.basedir}</dockerFileDir>
+								<tags>
+									<tag>latest</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
