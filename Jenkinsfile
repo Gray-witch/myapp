@@ -10,7 +10,6 @@ pipeline {
             steps {
                 echo 'mvn build start'
                 sh 'mvn clean package -Dmaven.test.skip=true'
-                sh 'mvn spring-boot:build-image'
             }
         }
     }
