@@ -73,6 +73,9 @@
 				<configuration>
 					<dockerfile>DOCKERFILE</dockerfile>
 					<repository>wuwi/${project.artifactId}</repository>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>

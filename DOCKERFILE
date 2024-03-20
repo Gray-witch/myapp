@@ -2,7 +2,7 @@ FROM openjdk:17
 
 MAINTAINER WUWI
 
-COPY target/*.jar app.jar/
+ADD target/${JAR_FILE} /app.jar
 
 EXPOSE 7070
 
