@@ -2,6 +2,8 @@ FROM openjdk:17
 
 MAINTAINER WUWI
 
+ARG JAR_FILE
+
 ADD target/${JAR_FILE} /app.jar
 
 EXPOSE 7070
