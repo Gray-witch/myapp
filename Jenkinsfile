@@ -11,7 +11,7 @@ pipeline {
                 echo 'mvn build start'
                 sh 'mvn clean package -Dmaven.test.skip=true'
             }
-        },
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploy'
