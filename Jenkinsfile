@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'Deploy'
             }
-        },
+        }
     }
 
     post {
