@@ -18,12 +18,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                def CONTAINER_ID = sh(script: "docker ps | grep portainer | awk '{print $1}'", returnStdout: true).trim()
-                if (!CONTAINER_ID.isEmpty()) {
-                   echo 'delete exists container'
-                   sh 'docker stop ${CONTAINER_ID} && docker rm ${CONTAINER_ID}'
+                script{
+                    def CONTAINER_ID = sh(script: "docker ps | grep portainer | awk '{print $1}'", returnStdout: true).trim()
+                    if (!CONTAINER_ID.isEmpty()) {
+                       echo 'delete exists container'
+                       sh 'docker stop ${CONTAINER_ID} && docker rm ${CONTAINER_ID}'
+                    }
+                    sh 'docker run -d --name ${CONTAINER_NAME} -p 7070:7070 ${IMAGE_NAME}:latest'
                 }
-                sh 'docker run -d --name ${CONTAINER_NAME} -p 7070:7070 ${IMAGE_NAME}:latest'
             }
         }
     }
