@@ -5,6 +5,11 @@ pipeline {
         maven 'mvn-3.9.6'
     }
 
+    parameters {
+           string(name: 'CONTAINER_NAME', defaultValue: 'my_app', description: '')
+           string(name: 'IMAGE_NAME', defaultValue: 'my-app', description: '')
+       }
+
     stages {
         stage('Build') {
             steps {
@@ -13,8 +18,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker stop my_app && docker rm my_app'
-                sh 'docker run -d --name my_app -p 7070:7070 my-app:latest'
+                def CONTAINER_ID = sh(script: "docker ps | grep portainer | awk '{print $1}'", returnStdout: true).trim()
+                if (!CONTAINER_ID.isEmpty()) {
+                   echo 'delete exists container'
+                   sh 'docker stop ${CONTAINER_ID} && docker rm ${CONTAINER_ID}'
+                }
+                sh 'docker run -d --name ${CONTAINER_NAME} -p 7070:7070 ${IMAGE_NAME}:latest'
             }
         }
     }
