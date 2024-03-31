@@ -7,7 +7,6 @@ pipeline {
 
     parameters {
         string(name: 'CONTAINER_NAME', defaultValue: 'my_app', description: '')
-        string(name: 'IMAGE_NAME', defaultValue: 'my-app', description: '')
     }
 
     stages {
@@ -19,12 +18,17 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    def CONTAINER_ID = sh(script: "docker ps | grep ${params.CONTAINER_NAME} | awk '{print \$1}'", returnStdout: true).trim()
-                    if (!CONTAINER_ID.isEmpty()) {
-                        echo "delete exists container ${CONTAINER_ID}"
-                        sh "docker stop ${CONTAINER_ID} && docker rm ${CONTAINER_ID}"
+                    def groupId = sh(script: 'mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout', returnStdout: true).trim()
+                    def artifactId = sh(script: 'mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout', returnStdout: true).trim()
+
+                    def IMAGE_NAME = "${groupId}/${artifactId}"
+
+                    def containerId = sh(script: "docker ps | grep ${params.CONTAINER_NAME} | awk '{print \$1}'", returnStdout: true).trim()
+                    if (!containerId.isEmpty()) {
+                        echo "delete exists container ${containerId}"
+                        sh "docker stop ${containerId} && docker rm ${containerId}"
                     }
-                    sh "docker run -d --name ${params.CONTAINER_NAME} -p 7070:7070 ${params.IMAGE_NAME}:latest"
+                    sh "docker run -d --name ${params.CONTAINER_NAME} -p 7070:7070 ${IMAGE_NAME}:latest"
                 }
             }
         }

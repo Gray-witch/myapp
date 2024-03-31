@@ -8,7 +8,7 @@
 		<version>3.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.wuwi</groupId>
+	<groupId>wuwi</groupId>
 	<artifactId>myapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>myapp</name>
@@ -72,7 +72,7 @@
 				</executions>
 				<configuration>
 					<dockerfile>DOCKERFILE</dockerfile>
-					<repository>wuwi/${project.artifactId}</repository>
+					<repository>${groupId}/${project.artifactId}</repository>
 					<buildArgs>
 						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
 						<CACHEBUST>${maven.build.timestamp}</CACHEBUST>
