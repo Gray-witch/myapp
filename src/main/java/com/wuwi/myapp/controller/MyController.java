@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MyController {
 
-    @GetMapping("/hello")
+    @GetMapping("/ping")
     public String hello() {
-        System.out.println("test web hook6");
-        return "hello world";
+        System.out.println("pong");
+        return "Pong";
     }
 }
