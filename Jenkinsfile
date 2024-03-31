@@ -29,7 +29,7 @@ pipeline {
                         sh "docker stop ${containerId} && docker rm ${containerId}"
                     }
                     sh "docker run -d --name ${params.CONTAINER_NAME} -p 7070:7070 ${IMAGE_NAME}:latest"
-                    sh "docker rmi $(docker images -q --filter "dangling=true")"
+                    sh "docker rmi $(docker images -q --filter 'dangling=true')"
                 }
             }
         }
