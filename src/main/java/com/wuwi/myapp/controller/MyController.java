@@ -9,6 +9,6 @@ public class MyController {
     @GetMapping("/ping")
     public String hello() {
         System.out.println("pong");
-        return "Pong 123";
+        return "Pong 0000";
     }
 }
