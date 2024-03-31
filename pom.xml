@@ -75,6 +75,7 @@
 					<repository>wuwi/${project.artifactId}</repository>
 					<buildArgs>
 						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+						<CACHEBUST>${maven.build.timestamp}</CACHEBUST>
 					</buildArgs>
 				</configuration>
 			</plugin>
